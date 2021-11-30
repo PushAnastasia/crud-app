@@ -8,12 +8,12 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import static com.nix.ybrcrudapp.controller.UsersController.initUsers;
 
 @SpringBootApplication
-@EnableAutoConfiguration(exclude={ DataSourceAutoConfiguration.class})
+@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
 public class YbrCrudAppApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(YbrCrudAppApplication.class, args);
-		initUsers();
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(YbrCrudAppApplication.class, args);
+        initUsers();
+    }
 
 }
