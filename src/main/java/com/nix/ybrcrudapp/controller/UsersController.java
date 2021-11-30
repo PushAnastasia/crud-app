@@ -2,6 +2,7 @@ package com.nix.ybrcrudapp.controller;
 
 import com.nix.ybrcrudapp.entities.User;
 import com.nix.ybrcrudapp.exception.NotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
