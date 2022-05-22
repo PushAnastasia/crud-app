@@ -1,40 +1,58 @@
 package com.nix.ybrcrudapp.controller;
 
-import com.nix.ybrcrudapp.entities.User;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
+import java.rmi.ServerException;
 import java.util.List;
 
-import static java.lang.String.format;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.nix.ybrcrudapp.UserService;
+import com.nix.ybrcrudapp.entities.User;
+import com.nix.ybrcrudapp.entities.UserDTO;
 
 @RestController
 @RequestMapping("user")
 public class UsersController {
-    private static List<User> users;
 
-    public static void initUsers() {
-        users = new ArrayList<User>() {{
-            add(new User(1, "First", "Hi, I'm the First"));
-            add(new User(2, "Second", "Hi, I'm the Second"));
-            add(new User(3, "Third", "Hi, I'm the Third"));
-        }};
-    }
+  @Autowired
+  private UserService userService;
 
-    @GetMapping
-    public List<User> getUsers() {
-        return users;
-    }
+  @GetMapping()
+  public List<User> getUsers() {
+    return userService.getUsersList();
+  }
 
-    @GetMapping("{id}")
-    public User getUser(@PathVariable String id) {
-        return users.stream().filter(item -> item.getId() == Integer.parseInt(id))
-                .findFirst().orElseThrow(() -> new IllegalArgumentException(format("The user is not found for ID: %s", id)));
-    }
+  @GetMapping("{id}")
+  public User getUser(@PathVariable String id) {
+    return userService.getUserById(id);
+  }
 
-    @DeleteMapping("{id}")
-    public String deleteUser(@PathVariable String id) {
-        users.remove(getUser(id));
-       return "";
+  @DeleteMapping("{id}")
+  public String deleteUser(@PathVariable String id) {
+    userService.removeUserById(id);
+    return "";
+  }
+
+  @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE},
+               produces = {MediaType.APPLICATION_JSON_VALUE})
+  @ResponseBody
+  public ResponseEntity<User> postUser(
+      @RequestBody UserDTO userToBeCreated) throws Exception {
+    User user = userService.addUser(userToBeCreated.getName());
+    if (user == null) {
+      throw new ServerException("User is null");
+    } else {
+      return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
+  }
 }
