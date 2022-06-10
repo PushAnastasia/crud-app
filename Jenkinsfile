@@ -7,6 +7,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                sh "echo JAVA_HOME=$JAVA_HOME"
                 sh 'mvn spring-boot:run'
             }
         }
