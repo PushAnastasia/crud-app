@@ -38,16 +38,15 @@ public class UsersController {
   }
 
   @DeleteMapping("{id}")
-  public String deleteUser(@PathVariable String id) {
+  public ResponseEntity<List<User>> deleteUser(@PathVariable String id) {
     userService.removeUserById(id);
-    return "";
+    return new ResponseEntity<>(userService.getUsersList(), HttpStatus.OK);
   }
 
   @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE},
                produces = {MediaType.APPLICATION_JSON_VALUE})
   @ResponseBody
-  public ResponseEntity<User> postUser(
-      @RequestBody UserDTO userToBeCreated) throws Exception {
+  public ResponseEntity<User> postUser(@RequestBody UserDTO userToBeCreated) throws Exception {
     User user = userService.addUser(userToBeCreated.getName());
     if (user == null) {
       throw new ServerException("User is null");

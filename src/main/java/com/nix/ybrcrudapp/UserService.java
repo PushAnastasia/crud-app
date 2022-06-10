@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.nix.ybrcrudapp.entities.User;
 
@@ -45,7 +47,7 @@ public class UserService {
     return users.stream()
                 .filter(user -> Integer.parseInt(id) == user.getId())
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(format("The user is not found for ID: %s", id)));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("Invalid user id %s", id)));
   }
 
 }
