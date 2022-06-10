@@ -4,19 +4,19 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                bat 'mvn spring-boot:run'
+                sh 'mvn spring-boot:run'
             }
         }
 
         stage('Run tests') {
                     steps {
-                        bat 'mvn clean test'
+                        sh 'mvn clean test'
                     }
                 }
 
         stage('Shut down app') {
                     steps {
-                        bat 'mvn spring-boot:stop'
+                        sh 'mvn spring-boot:stop'
                     }
                 }
     }
