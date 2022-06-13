@@ -5,9 +5,8 @@ pipeline {
         jdk 'jdk8'
     }
     stages {
-        stage('Build') {
+        stage('Run tests on CRUD app') {
             steps {
-                sh "echo JAVA_HOME=$JAVA_HOME"
                 sh 'mvn clean test'
             }
         }
