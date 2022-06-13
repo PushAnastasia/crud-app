@@ -8,20 +8,8 @@ pipeline {
         stage('Build') {
             steps {
                 sh "echo JAVA_HOME=$JAVA_HOME"
-                sh 'mvn spring-boot:run'
+                sh 'mvn clean test'
             }
         }
-
-        stage('Run tests') {
-                    steps {
-                        sh 'mvn clean test'
-                    }
-                }
-
-        stage('Shut down app') {
-                    steps {
-                        sh 'mvn spring-boot:stop'
-                    }
-                }
     }
 }
