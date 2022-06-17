@@ -1,10 +1,14 @@
 pipeline {
-    agent { dockerfile true }
+    agent { any }
     stages {
-        stage('Test') {
+        stage('Build') {
             steps {
-                sh 'mvn --version'
+                sh 'docker build app .'
             }
+                stage('run') {
+                    steps {
+                        sh 'docker run -p 9000:9000 app'
+                    }
         }
     }
 }
