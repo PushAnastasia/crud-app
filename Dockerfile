@@ -8,3 +8,4 @@ RUN mvn clean install -DskipTests
 FROM openjdk:8-jdk-alpine
 COPY --from=build /opt/app/target/*.jar ybr-crud-app.jar
 ENTRYPOINT ["java","-jar","/ybr-crud-app.jar"]
+RUN mvn spring-boot:run
