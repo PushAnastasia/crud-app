@@ -8,7 +8,7 @@ pipeline {
         }
                 stage('run') {
                     steps {
-                        sh 'docker run -p 9000:9000 app'
+                        sh 'docker run -p 9000:8999 app'
                     }
                 }
     }
