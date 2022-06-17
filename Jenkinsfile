@@ -4,6 +4,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'docker build -t app .'
+                sh 'docker network create mynetwork --driver bridge'
             }
         }
         stage('run') {
