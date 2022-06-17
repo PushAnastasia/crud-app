@@ -6,5 +6,6 @@ RUN mvn clean install -DskipTests
 
 # Run Application Stage
 FROM openjdk:8-jdk-alpine
+EXPOSE 9000
 COPY --from=build /opt/app/target/*.jar ybr-crud-app.jar
 CMD ["java","-jar","/ybr-crud-app.jar"]
