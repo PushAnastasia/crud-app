@@ -8,7 +8,13 @@ pipeline {
         }
         stage('Run application') {
             steps {
-                sh 'docker run --env DOCKER_HOST=tcp://docker:2376 -d --publish 9000:9000 app'
+                sh 'docker run
+                   --env DOCKER_HOST=tcp://docker:2376
+                   --env DOCKER_CERT_PATH=/certs/client
+                   --env DOCKER_TLS_VERIFY=1
+                   -d
+                   --publish 9000:9000 app'
+
             }
         }
     }
