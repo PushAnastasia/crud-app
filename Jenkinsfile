@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Run application') {
             steps {
-                sh 'docker run -d -p 9000:9000 app'
+                sh 'docker run --network=jenkins -d -p 9000:9000 app'
             }
         }
     }
