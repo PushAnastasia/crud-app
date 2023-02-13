@@ -10,6 +10,7 @@ pipeline {
             steps {
                 sh 'docker run \
                    --net=bridge \
+                   --network "external-api" \
                    -d \
                    --publish 9000:9000 app'
             }
