@@ -9,9 +9,11 @@ pipeline {
         stage('Run application') {
             steps {
                 sh 'docker run \
-                   --network "external-api" \
                    -d \
-                   --publish 9000:9000 app'
+                   --network "external-api" \
+                   --name "crud" \
+                   -p 9000:9000 \
+                   app'
             }
         }
     }
