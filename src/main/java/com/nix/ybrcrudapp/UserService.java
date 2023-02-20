@@ -18,9 +18,9 @@ public class UserService {
 
   public static void initUsers() {
     users = new ArrayList<User>() {{
-      add(new User(1, "First", "Hi, I'm the First test"));
-      add(new User(2, "Second", "Hi, I'm the Second test"));
-      add(new User(3, "Third", "Hi, I'm the Third test"));
+      add(new User(1, "First", "Hi, I'm the First"));
+      add(new User(2, "Second", "Hi, I'm the Second"));
+      add(new User(3, "Third", "Hi, I'm the Third"));
     }};
   }
 
