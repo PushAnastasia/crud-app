@@ -11,10 +11,10 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 @EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
-public class TestCrudAppApplication {
+public class TestCrudApp {
 
   public static void main(String[] args) {
-    SpringApplication.run(TestCrudAppApplication.class, args);
+    SpringApplication.run(TestCrudApp.class, args);
   }
 
   @Bean
