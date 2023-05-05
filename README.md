@@ -37,7 +37,7 @@ Run in the root directory following commands one by one:
 The application is now accessible at the http://localhost:9000/user
 
 #### How to stop the Docker container with application
-Run the following docker command:
+Execute the following docker command:
 
     docker stop crud
 
