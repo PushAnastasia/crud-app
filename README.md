@@ -41,7 +41,7 @@ Run the following docker command:
 
     docker stop crud
 
-For the image deletion run:
+For the image deletion execute:
 
     docker rm crud
     docker image rm app
