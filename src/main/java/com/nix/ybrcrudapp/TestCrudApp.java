@@ -23,7 +23,6 @@ public class TestCrudApp {
   public CommandLineRunner sampleData() {
     return (args) -> {
       initUsers();
-      System.out.println(args);
     };
   }
 }
